@@ -1,0 +1,10 @@
+<a {{action 'new'}} class="btn btn-primary">Bom-Chicka-Bow-Wow!</a>
+
+<ul class="list-group">
+  <div class="list-group-item list-group-item-info">Relatives</div>
+  {{#each relative in model}}
+    {{#link-to 'relatives.show' relative classNames="list-group-item"}}{{relative.name}}{{/link-to}}
+  {{else}}
+    <div class="list-group-item">There are currently no Relatives; Better get busy.</div>
+  {{/each}}
+</ul>
