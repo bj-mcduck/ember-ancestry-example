@@ -27,11 +27,26 @@ Relatives.RelativesShowRoute = Ember.Route.extend({
     },
 
     new: function(params){
-      var referer = this.currentModel.get('id' ),
-          parent_id = (params ? params.id : null);
-      this.transitionTo('relatives.new' ).then(function(newRoute){
+      var referer = this.currentModel.get('id'),
+          parent_id = this.currentModel.get('railsId');
+//          parent_id = (params ? params.id : null);
+      this.transitionTo('relatives.new').then(function(newRoute){
         newRoute.controller.set('previous', referer);
-        newRoute.currentModel.set('parent_id', parent_id);
+        newRoute.currentModel.set('parentRailsId', parent_id);
+      });
+    },
+    delete: function(params){
+      console.log('deleted');
+      var shouldTransition = (this.currentModel.get('id') == params.id),
+          controller = this;
+      this.store.find('relative', params.id ).then(function(relative){
+        relative.destroyRecord();
+        relative.save();
+
+        if (shouldTransition){
+          console.log('you deleted yourself');
+          controller.transitionTo('relatives.index');
+        }
       });
     }
   }

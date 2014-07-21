@@ -1,64 +1,22 @@
 <div class="form-group">
-  <div class="col-sm-9">
-    <div class="form-group">
-      <h1>
-        <label class="control-label col-sm-2">
-          <i class="fa fa-pencil"></i>
-        </label>
-        <div class="col-sm-9">
-          {{#if relative.name}}
-            <p class="form-control-static">{{relative.name}}</p>
-          {{else}}
-            <p class="form-control-static">I need a name...</p>
-          {{/if}}
-        </div>
-      </h1>
-    </div>
-  </div>
+  <h1>
+    Hey,
+    {{#if relative.name}}
+      My name is {{relative.name}}.
+    {{else}}
+      I need a name...
+    {{/if}}
+  </h1>
 </div>
 <div class="form-group">
-  <div class="col-sm-9">
-    <div class="form-group">
-      <label class="control-label col-sm-2">
-        Name
-      </label>
-      <div class="col-sm-10">
-        {{input type='text' value=relative.name class="form-control input-group-large"}}
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="control-label col-sm-2">
-        Child Of
-      </label>
-      <div class="col-sm-10">
-        {{view Ember.Select content=parents optionValuePath="content.id" optionLabelPath="content.name" value=relative.parent_id class="form-control" prompt="None"}}
-      </div>
-    </div>
-  </div>
+  <label class="control-label">
+    Name
+  </label>
+  {{input type='text' value=relative.name class="form-control input-group-large"}}
 </div>
 <div class="form-group">
-  <div class="col-sm-9">
-    <div class="form-group">
-      <div class="col-sm-9 col-sm-offset-2">
-        <div class="btn-group">
-          <btn class="btn btn-primary" {{action 'saveAction'}}>
-            <i class="fa fa-check"></i>
-            Save
-          </btn>
-
-          {{#if 'deleteAction'}}
-            <btn class="btn btn-danger" {{action 'deleteAction'}}>
-              <i class="fa fa-trash-o"></i>
-              Delete
-            </btn>
-          {{/if}}
-
-          <btn class="btn btn-default" {{action 'cancelAction'}}>
-            <i class="fa fa-times"></i>
-            Cancel
-          </btn>
-        </div>
-      </div>
-    </div>
-  </div>
+  <label class="control-label">
+    Child Of
+  </label>
+  {{view Ember.Select content=parents optionValuePath="content.id" optionLabelPath="content.name" value=relative.parentRailsId class="form-control" prompt="None"}}
 </div>

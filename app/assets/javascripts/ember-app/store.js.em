@@ -7,5 +7,8 @@ class Relatives.ApplicationStore extends DS.Store
 #class Relatives.ApplicationAdapter extends DS.FixtureAdapter
 
 # Enable this to use the site with the Rails DB
-class Relatives.ApplicationAdapter extends DS.ActiveModelAdapter
+#class Relatives.ApplicationAdapter extends DS.ActiveModelAdapter
 
+Relatives.ApplicationAdapter = DS.ActiveModelAdapter.extend(
+  namespace: 'api'
+)

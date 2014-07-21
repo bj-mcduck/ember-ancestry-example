@@ -12,3 +12,12 @@
  *= require bootstrap
  *= require_tree .
  */
+
+body {
+  padding-top: 80px;
+}
+
+.divider{
+  padding: 0 10px 0 5px;
+  color: hsl(0, 0%, 80%);
+}

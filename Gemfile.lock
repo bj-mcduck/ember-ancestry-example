@@ -32,6 +32,7 @@ GEM
     ancestry (2.1.0)
       activerecord (>= 3.0.0)
     arel (5.0.1.20140414130214)
+    awesome_print (1.2.0)
     barber (0.4.2)
       ember-source
       execjs
@@ -171,6 +172,7 @@ PLATFORMS
 
 DEPENDENCIES
   ancestry
+  awesome_print
   bootstrap-sass (>= 3.0.0.0)
   coffee-rails (~> 4.0.0)
   compass-rails

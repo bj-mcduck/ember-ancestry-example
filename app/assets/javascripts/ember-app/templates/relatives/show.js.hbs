@@ -5,7 +5,14 @@
   {{/each}}
 </ol>
 
-<h1>Hi there, my name is {{name}}!</h1>
+<h1>
+  Hi there, my name is {{name}}!
+  <div class="btn-group btn-group-sm">
+    {{#link-to 'relatives.new' parent_id=model.id classNames="btn btn-success"}}<i class="fa fa-plus"></i> {{/link-to}}
+    {{#link-to 'relatives.edit' model classNames="btn btn-default"}}<i class="fa fa-pencil"></i>{{/link-to}}
+    <div class="btn btn-danger" {{action 'delete' model}}><i class="fa fa-trash-o"></i></div>
+  </div>
+</h1>
 <ul class="list-group">
   <div class="list-group-item list-group-item-info">Siblings</div>
   {{#each sibling in siblings}}
@@ -15,7 +22,7 @@
       {{/link-to}}
       <div class="btn-group pull-right btn-group-xs">
         {{#link-to 'relatives.edit' sibling classNames="btn btn-default"}}<i class="fa fa-pencil"></i>{{/link-to}}
-        <div class="btn btn-danger"><i class="fa fa-trash-o"></i></div>
+        <div class="btn btn-danger" {{action 'delete' sibling}}><i class="fa fa-trash-o"></i></div>
       </div>
     </div>
   {{else}}
@@ -26,15 +33,16 @@
 <ul class="list-group">
   <div class="list-group-item list-group-item-info">
     Kids
-    {{#link-to 'relatives.new' parent_id=model.id classNames="badge"}}Make a baby with {{name}}{{/link-to}}
   </div>
   {{#each kid in kids}}
     <div class="list-group-item">
-      {{#link-to 'relatives.show' kid classNames="list-group-item"}}
+      {{#link-to 'relatives.show' kid}}
         {{kid.name}}
       {{/link-to}}
-      {{#link-to 'relatives.edit' kid classNames="label label-default pull-right"}}<i class="fa fa-pencil"></i>{{/link-to}}
-      <div class="label label-danger pull-right"><i class="fa fa-trash-o"></i></div>
+      <div class="btn-group pull-right btn-group-xs">
+        {{#link-to 'relatives.edit' kid classNames="btn btn-default"}}<i class="fa fa-pencil"></i>{{/link-to}}
+        <div class="btn btn-danger" {{action 'delete' kid}}><i class="fa fa-trash-o"></i></div>
+      </div>
     </div>
   {{else}}
     <div class="list-group-item">I gotz no kids.</div>

@@ -27,15 +27,21 @@ Relatives.RelativesEditController = Ember.ObjectController.extend({
       this.transitionToRoute('relatives.show', model);
     },
     save: function(){
-      console.log('ran save');
-//      var model = this.get('model');
-//      model.save();
-//      this.transitionToRoute('relatives.show', model);
+      var model = this.get('model');
+      model.save();
+      this.transitionToRoute('relatives.show', model);
     },
     delete: function(){
-      this.get('model').deleteRecord();
-      this.get('model').save();
-      this.transitionTo('relatives.index');
+      var model = this.get('model' ),
+          controller = this,
+          parent = model.get('parent');
+      model.destroyRecord();
+      model.save();
+      if (parent) {
+        controller.transitionTo( 'relatives.show', parent );
+      }else{
+        controller.transitionTo( 'relatives.index' );
+      }
     }
   }
 });

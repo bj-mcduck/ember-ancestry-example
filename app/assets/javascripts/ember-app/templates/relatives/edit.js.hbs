@@ -1,1 +1,19 @@
-{{relative-form relative=model parents=parents value=model.parent_id saveAction=save cancelAction=cancel deleteAction=delete}}
+{{relative-form relative=model parents=parents value=model.parentRailsId save=save cancel='cancel' delete=delete}}
+<div class="form-group">
+  <div class="btn-group">
+    <btn class="btn btn-primary" {{action 'save'}}>
+      <i class="fa fa-check"></i>
+      Save
+    </btn>
+
+    <btn class="btn btn-danger" {{action 'delete'}}>
+      <i class="fa fa-trash-o"></i>
+      Delete
+    </btn>
+
+    <btn class="btn btn-default" {{action 'cancel'}}>
+      <i class="fa fa-times"></i>
+      Cancel
+    </btn>
+  </div>
+</div>

@@ -5,13 +5,13 @@ Relatives.RelativesNewController = Ember.ObjectController.extend({
 
   parents: function(){
     var controller = this,
-      symbols = this.store.all('relative' ).filter(function(relative){
-        return relative.get('railsId') != controller.get('model.railsId');
-      }),
-      sorted = Ember.ArrayProxy.createWithMixins(Ember.SortableMixin, {
-        sortProperties: ['name'],
-        content: symbols
-      });
+        symbols = this.store.all('relative' ).filter(function(relative){
+          return relative.get('railsId') != controller.get('model.railsId');
+        }),
+        sorted = Ember.ArrayProxy.createWithMixins(Ember.SortableMixin, {
+          sortProperties: ['name'],
+          content: symbols
+        });
     return sorted.map(function(relative){
       return {
         id: relative.get('railsId'),
