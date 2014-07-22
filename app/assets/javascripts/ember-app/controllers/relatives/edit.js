@@ -5,7 +5,7 @@ Relatives.RelativesEditController = Ember.ObjectController.extend({
 
   parents: function(){
     var controller = this,
-        symbols = this.store.all('relative' ).filter(function(relative){
+        symbols = this.store.all('relative').filter(function(relative){
           return relative.get('railsId') != controller.get('model.railsId');
         }),
         sorted = Ember.ArrayProxy.createWithMixins(Ember.SortableMixin, {

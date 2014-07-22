@@ -40,7 +40,7 @@ class RelativesController < ApplicationController
 
   def destroy
     @relative.destroy
-    render json: { status: :created }
+    render json: {}
   end
 
   private

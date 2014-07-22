@@ -3,6 +3,8 @@ Relatives::Application.routes.draw do
     post 'relatives', to: 'relatives#create'
     get 'relatives/*id', to: 'relatives#show'
     put 'relatives/*id', to: 'relatives#update'
+    delete 'relatives/*id', to: 'relatives#show'
+
     resources :relatives
   end
 
