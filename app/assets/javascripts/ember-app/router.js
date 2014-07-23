@@ -9,4 +9,6 @@ Relatives.Router.map(function(){
     this.route('edit', { path: '*id/edit' });
     this.route('show', { path: '*id' });
   });
+
+  this.route('missing', { path: '*:' });
 });
