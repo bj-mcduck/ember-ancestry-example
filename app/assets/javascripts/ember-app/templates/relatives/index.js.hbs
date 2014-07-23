@@ -1,11 +1,12 @@
 <div class="lead">
   To make a new baby, press the
-  <a {{action 'new'}} class="btn btn-success"><i class="fa fa-plus"></i> Bom-Chicka-Bow-WOW!</a> button.
+  <a {{action 'new'}} class="btn btn-success"><i class="fa fa-plus"></i> Bom-chicka-wah-wah</a> button.
 </div>
 
+{{debugger}}
 <ul class="list-group">
   <div class="list-group-item list-group-item-info">Relatives</div>
-  {{#each relative in model}}
+  {{#each relative in grandParents}}
     {{#link-to 'relatives.show' relative classNames="list-group-item"}}{{relative.name}}{{/link-to}}
   {{else}}
     <div class="list-group-item">There are currently no Relatives; Better get busy.</div>
