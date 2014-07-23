@@ -29,7 +29,6 @@ class RelativesController < ApplicationController
   end
 
   def update
-    ap params
     @relative.parent_id = params[:relative][:parent_rails_id]
     if @relative.update(relative_params)
       render json: @relative, status: :updated

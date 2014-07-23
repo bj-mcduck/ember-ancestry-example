@@ -5,5 +5,6 @@ Relatives.Relative = DS.Model.extend({
   kids:       DS.hasMany('relative'),
   parent:     DS.belongsTo('relative', { inverse: 'children' }),
   parentRailsId:   DS.attr('number'),
-  siblings:   DS.hasMany('relative')
+  siblings:   DS.hasMany('relative', { inverse: 'sibling' }),
+  sibling:    DS.belongsTo('relative', { inverse: 'siblings' })
 });

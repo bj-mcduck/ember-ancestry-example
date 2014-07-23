@@ -36,7 +36,6 @@ Relatives.RelativesShowRoute = Ember.Route.extend({
       });
     },
     delete: function(params){
-      console.log('deleted');
       var shouldTransition = (this.currentModel.get('id') == params.id),
           controller = this;
       this.store.find('relative', params.id ).then(function(relative){
@@ -44,7 +43,6 @@ Relatives.RelativesShowRoute = Ember.Route.extend({
         relative.save();
 
         if (shouldTransition){
-          console.log('you deleted yourself');
           controller.transitionTo('relatives.index');
         }
       });
