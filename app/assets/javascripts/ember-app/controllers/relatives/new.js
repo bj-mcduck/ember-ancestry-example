@@ -31,7 +31,7 @@ Relatives.RelativesNewController = Ember.ObjectController.extend({
     },
     save: function(){
       var route = this;
-      this.get('model' ).save().then(function(relative){
+      this.get('model').save().then(function(relative){
         route.transitionToRoute('relatives.show', relative);
       });
     }

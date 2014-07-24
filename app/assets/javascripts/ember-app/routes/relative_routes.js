@@ -22,14 +22,9 @@ Relatives.RelativesShowRoute = Ember.Route.extend({
   },
 
   actions: {
-    edit: function(){
-      return this.transitionTo('relatives.edit', this.currentModel);
-    },
-
     new: function(params){
       var referer = this.currentModel.get('id'),
           parent_id = this.currentModel.get('railsId');
-//          parent_id = (params ? params.id : null);
       this.transitionTo('relatives.new').then(function(newRoute){
         newRoute.controller.set('previous', referer);
         newRoute.currentModel.set('parentRailsId', parent_id);
