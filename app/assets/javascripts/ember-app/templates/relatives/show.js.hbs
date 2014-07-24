@@ -17,15 +17,13 @@
 <ul class="list-group">
   <div class="list-group-item list-group-item-info">Siblings</div>
   {{#each sibling in filteredSiblings}}
-    <div class="list-group-item">
-      {{#link-to 'relatives.show' sibling}}
-        {{sibling.name}}
-      {{/link-to}}
+    {{#link-to 'relatives.show' sibling classNames="list-group-item"}}
+      {{sibling.name}}
       <div class="btn-group pull-right btn-group-xs">
-        {{#link-to 'relatives.edit' sibling classNames="btn btn-default"}}<i class="fa fa-pencil"></i>{{/link-to}}
+        <div class="btn btn-default" {{action 'edit' sibling}}><i class="fa fa-pencil"></i></div>
         <div class="btn btn-danger" {{action 'delete' sibling}}><i class="fa fa-trash-o"></i></div>
       </div>
-    </div>
+    {{/link-to}}
   {{else}}
     <div class="list-group-item">I gotz no siblings.</div>
   {{/each}}
@@ -36,15 +34,13 @@
     Kids
   </div>
   {{#each kid in kids}}
-    <div class="list-group-item">
-      {{#link-to 'relatives.show' kid}}
-        {{kid.name}}
-      {{/link-to}}
+    {{#link-to 'relatives.show' kid classNames="list-group-item"}}
+      {{kid.name}}
       <div class="btn-group pull-right btn-group-xs">
-        {{#link-to 'relatives.edit' kid classNames="btn btn-default"}}<i class="fa fa-pencil"></i>{{/link-to}}
+        <div class="btn btn-default" {{action 'edit' kid}}><i class="fa fa-pencil"></i></div>
         <div class="btn btn-danger" {{action 'delete' kid}}><i class="fa fa-trash-o"></i></div>
       </div>
-    </div>
+    {{/link-to}}
   {{else}}
     <div class="list-group-item">I gotz no kids.</div>
   {{/each}}

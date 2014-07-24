@@ -6,7 +6,13 @@
 <ul class="list-group">
   <div class="list-group-item list-group-item-info">Relatives</div>
   {{#each relative in grandParents}}
-    {{#link-to 'relatives.show' relative classNames="list-group-item"}}{{relative.name}}{{/link-to}}
+    {{#link-to 'relatives.show' relative classNames="list-group-item"}}
+      {{relative.name}}
+      <div class="btn-group pull-right btn-group-xs">
+        <div class="btn btn-default" {{action 'edit' relative}}><i class="fa fa-pencil"></i></div>
+        <div class="btn btn-danger" {{action 'delete' relative}}><i class="fa fa-trash-o"></i></div>
+      </div>
+    {{/link-to}}
   {{else}}
     <div class="list-group-item">There are currently no Relatives; Better get busy.</div>
   {{/each}}
