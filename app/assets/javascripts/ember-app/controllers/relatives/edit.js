@@ -29,12 +29,12 @@ Relatives.RelativesEditController = Ember.ObjectController.extend({
 
     save: function(){
       var model = this.get('model'),
-          modelId = model.get('id'),
           controller = this;
       model.save().then(function(){
         controller.transitionToRoute( 'relatives.show', model );
       },function(response){
 //        controller.find( 'relative', modelId ).deleteRecord();
+        debugger;
         var newModelData = response['responseJSON']['relative'],
             newModel = controller.store.push( 'relative', newModelData );
         controller.transitionToRoute( 'relatives.show', newModel );

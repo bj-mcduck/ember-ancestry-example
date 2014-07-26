@@ -9,8 +9,13 @@ Relatives.RelativesRoute = Ember.Route.extend({
       return this.transitionTo('relatives.edit', params.id);
     },
 
-    new: function(){
-      return this.transitionTo('relatives.new');
+    new: function(model){
+      var referer = this.currentModel.get('id'),
+        parentId = model.get('railsId');
+      this.transitionTo('relatives.new').then(function(newRoute){
+        newRoute.controller.set('previous', referer);
+        newRoute.currentModel.set('parentRailsId', parentId);
+      });
     }
   }
 });
@@ -22,14 +27,6 @@ Relatives.RelativesShowRoute = Ember.Route.extend({
   },
 
   actions: {
-    new: function(params){
-      var referer = this.currentModel.get('id'),
-          parent_id = this.currentModel.get('railsId');
-      this.transitionTo('relatives.new').then(function(newRoute){
-        newRoute.controller.set('previous', referer);
-        newRoute.currentModel.set('parentRailsId', parent_id);
-      });
-    },
     delete: function(params){
       var shouldTransition = (this.currentModel.get('id') == params.id),
           controller = this;
