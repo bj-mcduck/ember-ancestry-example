@@ -4,7 +4,7 @@ class RelativesController < ApplicationController
   respond_to :json
 
   def index
-    @relatives = Relative.all
+    set_relatives
     render json: @relatives, each_serializer: RelativeSerializer
   end
 
@@ -24,7 +24,7 @@ class RelativesController < ApplicationController
 
   def update
     if @relative.update(relative_params)
-      render json: @relative
+      render json: @relative, status: :updated
     else
       render json: @relative.errors, status: :unprocessable_entity
     end
@@ -47,6 +47,14 @@ private
     valid_id = Integer params[:relative][:rails_id] rescue false
     @relative = Relative.find_by_id(valid_id) if valid_id
     @relative = Relative.find_by_full_path(params[:id]) if !valid_id
+  end
+
+  def set_relatives
+    if params[:ids].present?
+      @relatives = Relative.where full_path: params[:ids]
+    else
+      @relatives = Relative.roots
+    end
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

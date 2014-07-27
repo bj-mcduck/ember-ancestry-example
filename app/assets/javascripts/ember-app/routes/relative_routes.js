@@ -11,7 +11,7 @@ Relatives.RelativesRoute = Ember.Route.extend({
 
     new: function(model){
       var referer = this.currentModel.get('id'),
-        parentId = model.get('railsId');
+        parentId = ( model ? model.get('railsId') : null );
       this.transitionTo('relatives.new').then(function(newRoute){
         newRoute.controller.set('previous', referer);
         newRoute.currentModel.set('parentRailsId', parentId);
@@ -37,6 +37,12 @@ Relatives.RelativesShowRoute = Ember.Route.extend({
         if (shouldTransition){
           controller.transitionTo('relatives.index');
         }
+      });
+    },
+    reload: function(){
+      console.log('ran reload');
+      this.currentModel.reload().then(function(){
+        console.log('finished reload');
       });
     }
   }
