@@ -27,20 +27,6 @@ Relatives.RelativesEditController = Ember.ObjectController.extend({
       this.transitionToRoute('relatives.show', model);
     },
 
-    save: function(){
-      var model = this.get('model'),
-          controller = this;
-      model.save().then(function(){
-        controller.transitionToRoute( 'relatives.show', model );
-      },function(response){
-//        controller.find( 'relative', modelId ).deleteRecord();
-        debugger;
-        var newModelData = response['responseJSON']['relative'],
-            newModel = controller.store.push( 'relative', newModelData );
-        controller.transitionToRoute( 'relatives.show', newModel );
-      });
-    },
-
     delete: function(){
       var model = this.get('model'),
           controller = this,
