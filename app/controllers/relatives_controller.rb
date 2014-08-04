@@ -4,38 +4,42 @@ class RelativesController < ApplicationController
   respond_to :json
 
   def index
-    @relatives = Relative.all
-    render json: @relatives, each_serializer: RelativeSerializer
+    set_relatives
+    respond_with @relatives, each_serializer: RelativeSerializer
   end
 
   def show
-    render json: @relative
+    respond_with @relative
   end
 
   def create
     @relative = Relative.new(relative_params)
 
     if @relative.save
-      render json: @relative, status: :created
+      respond_with @relative, status: :ok
     else
-      render json: @relative.errors, status: :unprocessable_entity
+      respond_with @relative.errors, status: :error
     end
   end
 
   def update
     if @relative.update(relative_params)
-      render json: @relative
+      render json: @relative, status: update_response
     else
-      render json: @relative.errors, status: :unprocessable_entity
+      respond_with @relative.errors, status: :error
     end
   end
 
   def destroy
     @relative.destroy
-    render :nothing
+    respond_with status: :ok
   end
 
 private
+  def update_response
+    @relative.full_path != params[:id] ? :error : :ok
+  end
+
   def serialize_ancestry
     # This seems like a bit of a hack.
     # I'd rather this happened in a serializer/adapter in Ember itself.
@@ -47,6 +51,14 @@ private
     valid_id = Integer params[:relative][:rails_id] rescue false
     @relative = Relative.find_by_id(valid_id) if valid_id
     @relative = Relative.find_by_full_path(params[:id]) if !valid_id
+  end
+
+  def set_relatives
+    if params[:ids].present?
+      @relatives = Relative.where full_path: params[:ids]
+    else
+      @relatives = Relative.roots
+    end
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

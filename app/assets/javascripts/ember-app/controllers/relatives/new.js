@@ -6,7 +6,7 @@ Relatives.RelativesNewController = Ember.ObjectController.extend({
   parents: function(){
     var controller = this,
         symbols = this.store.all('relative').filter(function(relative){
-          return relative.get('railsId') != controller.get('model.railsId');
+          return relative.get('railsId') != controller.get('model.railsId') && relative.get('name') != null;
         }),
         sorted = Ember.ArrayProxy.createWithMixins(Ember.SortableMixin, {
           sortProperties: ['name'],
@@ -28,12 +28,6 @@ Relatives.RelativesNewController = Ember.ObjectController.extend({
       }else{
         this.transitionToRoute('relatives.show', this.get('previous') );
       }
-    },
-    save: function(){
-      var route = this;
-      this.get('model').save().then(function(relative){
-        route.transitionToRoute('relatives.show', relative);
-      });
     }
   }
 });
