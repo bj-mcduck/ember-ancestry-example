@@ -16,7 +16,7 @@ class RelativesController < ApplicationController
     @relative = Relative.new(relative_params)
 
     if @relative.save
-      respond_with @relative, status: :ok
+      render json: @relative, status: :ok
     else
       respond_with @relative.errors, status: :error
     end
